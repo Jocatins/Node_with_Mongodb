@@ -7,6 +7,7 @@ const app = express();
 const appRoutes = require('./routes/appRoutes');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 mongoose.connect('mongodb://localhost/meanDb', { useUnifiedTopology: true });
 mongoose.connection
@@ -17,6 +18,7 @@ mongoose.connection
     console.log('Connection error', error);
   });
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/', appRoutes);
